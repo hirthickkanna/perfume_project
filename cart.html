@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NECTAR FRAGRANCE - Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Screenshot 2024-10-28 221003.png">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">NECTAR FRAGRANCE</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About Us</a>
+                <a href="login.html">Login</a>
+                <a href="cart.html">Cart</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="cart-section">
+        <div class="container">
+            <h2>Your Cart</h2>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="cart-item"><img src="4.jpg" alt="Perfume 1"></td>
+                        <td>Secret Temptation</td>
+                        <td>$65.00</td>
+                        <td><input type="number" value="1" min="1" style="width: 50px;"></td>
+                        <td>$65.00</td>
+                        <td><button class="btn">X</button></td>
+                    </tr>
+                    <tr>
+                        <td class="cart-item"><img src="11.jpg" alt="Perfume 2"></td>
+                        <td>chole</td>
+                        <td>$95.00</td>
+                        <td><input type="number" value="1" min="1" style="width: 50px;"></td>
+                        <td>$90.00</td>
+                        <td><button class="btn">X</button></td>
+                    </tr>
+                    <tr>
+                        <td class="cart-item"><img src="6.avif" alt="Perfume 2"></td>
+                        <td>lauren</td>
+                        <td>$80.00</td>
+                        <td><input type="number" value="1" min="1" style="width: 50px;"></td>
+                        <td>$90.00</td>
+                        <td><button class="btn">X</button></td>
+                    </tr>
+                    <tr>
+                        <td class="cart-item"><img src="5.webp" alt="Perfume 2"></td>
+                        <td>Bleu de Chanel</td>
+                        <td>$80.00</td>
+                        <td><input type="number" value="1" min="1" style="width: 50px;"></td>
+                        <td>$90.00</td>
+                        <td><button class="btn">X</button></td>
+                    </tr>
+                    <tr>
+                        <td class="cart-item"><img src="giorgio armani.webp" alt="Perfume 2"></td>
+                        <td>Giorgio Armani</td>
+                        <td>$100.00</td>
+                        <td><input type="number" value="1" min="1" style="width: 50px;"></td>
+                        <td>$100.00</td>
+                        <td><button class="btn">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <span>Total:</span>
+                <span class="total-price">$420.00</span>
+                <a href="https://chat.whatsapp.com/FBBIcW73C69Bc8F6FtVNpq" class="checkout-btn">Proceed to Checkout</a>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Function to update subtotal and total prices dynamically
+        function updateCart() {
+            const rows = document.querySelectorAll("tbody tr");
+            let total = 0;
+    
+            rows.forEach((row) => {
+                const price = parseFloat(row.querySelector("td:nth-child(3)").innerText.replace("$", ""));
+                const quantity = row.querySelector("td:nth-child(4) input").value;
+                const subtotal = price * quantity;
+                row.querySelector("td:nth-child(5)").innerText = `$${subtotal.toFixed(2)}`;
+                total += subtotal;
+            });
+    
+            document.querySelector(".total-price").innerText = `$${total.toFixed(2)}`;
+        }
+    
+        // Event listener for quantity input changes
+        document.querySelectorAll("input[type='number']").forEach((input) => {
+            input.addEventListener("input", updateCart);
+        });
+    
+        // Event listener for remove buttons
+        document.querySelectorAll(".btn").forEach((button, index) => {
+            button.addEventListener("click", () => {
+                const row = button.parentElement.parentElement;
+                row.remove();
+                updateCart();
+            });
+        });
+    </script>
+    
+</body>
+
+</html>
